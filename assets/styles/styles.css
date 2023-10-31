@@ -2,11 +2,8 @@
 
 main {
   display: flex;
-  border: 1px solid red;
   height: 45rem;
 }
-
-/* CLASS SELECTORS */
 
 header {
   background-color: cadetblue;
@@ -15,30 +12,56 @@ header {
   padding: 2rem;
 }
 
+li {
+  margin-bottom: 1rem;
+}
+
 input {
   padding: .5rem;
 }
+
+/* CLASS SELECTORS */
+
+.heading {
+  margin-bottom: .6rem;
+}
+
+.forecast {
+  width: 10rem;
+  height: clamp(180px,200px,250px);
+  background-color: darkblue;
+  color: white;
+}
+
 
 /* ID SELECTORS */
 
 #form-box {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 1rem;
   min-width: 14rem;
   max-height: 20rem;
   padding: 1rem;
   text-align: center;
+  border-bottom: 1px solid grey;
 }
 
-#left {
-  border: 1px solid blue;
+#day-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#city-info,
+#forecast-info {
+  padding: 1rem;
 }
 
 #right {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 20rem;
-  flex: 1;
+  flex: 2;
 }
 
 #submit-btn {

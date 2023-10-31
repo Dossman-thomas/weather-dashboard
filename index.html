@@ -7,7 +7,7 @@
   <title>Weather Dashboard</title>
 
   <link rel="stylesheet" href="./assets/styles/reset.css">
-  
+
   <link rel="stylesheet" href="./assets/styles/styles.css">
 
 </head>
@@ -24,6 +24,9 @@
 
     <!-- LEFT SECTION W/SEARCH FORM -->
     <section id="left">
+
+      <!-- SUBMIT FORM -->
+
       <form>
         <div id="form-box">
 
@@ -31,23 +34,78 @@
             Search for a City:
           </h2>
 
-          <input placeholder="Enter City">
+          <input placeholder="Enter City" id="city-input">
   
           <button id="submit-btn">
             Search
           </button>
 
         </div>
-      
       </form>
-      
+
+    <!-- BTNS LIST DYNAMICALLY GENERATED IN SCRIPT.JS OF CITIES SAVED IN LOCAL STORAGE -->
+
+      <ul id="ls-cities"></ul>
     </section>
     
+
     <!-- RIGHT SECTION W/WEATHER INFO -->
     <section id="right">
   
+      <!-- CONTAINER FOR CURRENT CITY INFO -->
+      <div id="city-info">
+
+        <h2 class="heading">Current City</h2>
+
+        <ul>
+          <li>
+            Temp:
+          </li>
+
+          <li>
+            Wind:
+          </li>
+
+          <li>
+            Humidity:
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- FIVE DAY FORCAST GRID -->
+      <div id="forecast-info">
+
+        <h2 class="heading">5-Day Forecast</h2>
+
+        <div id="day-box">
+
+          <div class="forecast" id="day-0"> 
+            Mon
+          </div>
+
+          <div class="forecast"
+          id="day-1">
+            Tues
+          </div>
+
+          <div class="forecast" id="day-2">
+            Wed
+          </div>
+
+          <div class="forecast" id="day-3">
+            Thurs
+          </div>
+
+          <div class="forecast" id="day-4">
+            Fri
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
-  
 
   </main>
 
