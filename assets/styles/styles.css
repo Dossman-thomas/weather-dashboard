@@ -27,10 +27,11 @@ input {
 }
 
 .forecast {
-  width: 10rem;
-  height: clamp(180px,200px,250px);
-  background-color: darkblue;
+  width: 5rem;
+  height: 150px;
+  background-color: rgb(113, 113, 227);
   color: white;
+  padding: 1rem;
 }
 
 
@@ -40,15 +41,15 @@ input {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-width: 14rem;
+  width: 21vw;
   max-height: 20rem;
   padding: 1rem;
-  text-align: center;
   border-bottom: 1px solid grey;
 }
 
 #day-box {
   display: flex;
+  /* justify-content: center; */
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -56,15 +57,19 @@ input {
 #city-info,
 #forecast-info {
   padding: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 #right {
-  /* border: 1px solid red; */
+  border-left: 1px solid grey;
   width: 20rem;
-  flex: 2;
+  flex: 1;
 }
 
 #submit-btn {
   padding: .5rem;
   font-weight: 600;
+  background-color: rgb(113, 113, 227);
+  color: white;
+  border: none;
 }
