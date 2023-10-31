@@ -1,0 +1,43 @@
+/* Set Universal Selector to remove default margin and padding.  Also set page font family */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Make sure block-level elements are display: block */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+p,
+pre,
+blockquote,
+dl,
+dd,
+ol,
+ul,
+fieldset,
+legend {
+  display: block;
+}
+
+/* Remove list styles (bullet points and numbers) */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove the default border on images */
+img {
+  border: 0;
+}
+
+/* Additional styles to normalize form elements, etc. */
+input, button, select, textarea {
+  font: inherit;
+}
