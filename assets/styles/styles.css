@@ -1,0 +1,53 @@
+/* UNIVERSAL SELECTORS */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  border: 1px solid red;
+  height: 45rem;
+}
+
+/* CLASS SELECTORS */
+
+header {
+  background-color: cadetblue;
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+
+input {
+  padding: .5rem;
+}
+
+/* ID SELECTORS */
+
+#form-box {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  min-width: 14rem;
+  max-height: 20rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+#left {
+  border: 1px solid blue;
+}
+
+#right {
+  border: 1px solid red;
+  width: 20rem;
+  flex: 1;
+}
+
+#submit-btn {
+  padding: .5rem;
+  font-weight: 600;
+}
