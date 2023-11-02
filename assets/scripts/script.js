@@ -21,6 +21,22 @@ const citiesStorageEl = $("#ls-cities");
 let city;
 let cities = [];
 
+// Retrieve data from local storage
+cities = JSON.parse(localStorage.getItem("cities")) || [];
+
+// console.log(cities);
+
+// Check if there is data in local storage
+if (cities && cities.length > 0) {
+  // Do something with the data, for example, display it in a list
+  for (const city of cities) {
+    // Create and append buttons, or process the data as needed
+    const citiesBtns = $('<button>').addClass("saved-cities").text(city);
+
+    citiesStorageEl.append(citiesBtns);
+  }
+}
+
 
 // hide 5-day forecast grid on load
 forecastInfo.hide();
