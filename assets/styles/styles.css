@@ -31,6 +31,29 @@ img {
   width: 40px;
 }
 
+button {
+  cursor: pointer;
+}
+
+
+/* GROUP SELECTORS */
+
+#city-info,
+#forecast-info {
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+#submit-btn,
+.saved-cities {
+  padding: .5rem;
+  font-weight: 600;
+  background-color: rgb(113, 113, 227);
+  color: white;
+  border: none;
+  
+}
+
 /* CLASS SELECTORS */
 
 .heading {
@@ -46,9 +69,11 @@ img {
   padding: 1rem;
 }
 
-.f-info {
-  display: none;
+.saved-cities {
+  display: block;
+  width: 83%;
 }
+
 
 /* ID SELECTORS */
 
@@ -69,27 +94,21 @@ img {
   gap: 1rem;
 }
 
-#city-info,
-#forecast-info {
-  padding: 1rem;
-  margin-bottom: 1.2rem;
-}
-
 #right {
-  border-left: 1px solid grey;
   width: 20rem;
   flex: 1;
-}
-
-#submit-btn {
-  padding: .5rem;
-  font-weight: 600;
-  background-color: rgb(113, 113, 227);
-  color: white;
-  border: none;
 }
 
 #cur-icon{
   height: 60px;
   width: 60px;
+}
+
+#ls-cities {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }

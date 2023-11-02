@@ -15,28 +15,85 @@ const userInput = $("#city-input")
 const curCityEl = $("#city-name");
 const curListEl = $("#cur-list");
 const forecastEl = $(".forecast");
+const forecastInfo = $("#forecast-info");
+const citiesStorageEl = $("#ls-cities");
 
 let city;
 let cities = [];
 
-// SUBMIT BTN FUNCTION
 
+// hide 5-day forecast grid on load
+forecastInfo.hide();
+
+// Helper function to capitalize the first letter of a string
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// SUBMIT BTN FUNCTION
 function handleSubmit(event){
 
   event.preventDefault();
+
 
   // empties weather content w/ new user input
   curCityEl.empty();
   curListEl.empty();
   forecastEl.empty();
-
-  // removes class that is hiding the 5-day forecast content
-  $("#forecast-info").removeAttr("class");
+  
 
   // sets new user input to variable 'city' to be used in fetch functions
-  city = userInput.val();
+  city = userInput.val().trim();
+  city = capitalizeFirstLetter(city);
 
-  getGEO(city);
+  if (city.trim() === '') {
+    // Show an alert if the input is empty
+    alert('Enter a city name, please!');
+    
+    // Makes sure forecast info is hidden
+     // empties weather content w/ new user input
+    
+    forecastInfo.hide();
+
+    return; // Return to exit the function
+
+  } else if (cities.includes(city)) {
+    // Check if the city is already in the list
+    
+    alert('You already entered this city');
+
+    forecastInfo.hide();
+
+  } else {
+
+    forecastInfo.show();
+    // removes class that is hiding the 5-day forecast content
+
+    getGEO(city);
+
+    // add user input to cities array
+    cities.push(city);
+
+    console.log(cities); // testing cities array
+
+
+    // create
+    citiesBtns = $('<button>').addClass("saved-cities");
+
+    // attr/text
+    citiesBtns.text(city);
+    
+    // append
+
+    citiesStorageEl.append(citiesBtns);
+
+
+    // saving past user inputs in local storage
+    localStorage.setItem("cities", JSON.stringify(cities));
+
+    userInput.val('');
+
+  }
 }
 
 // EVENT LISTENER
@@ -57,7 +114,7 @@ function getGEO(city){
       return response.json();
   })
   .then(function(data){
-      console.log(data);
+      // console.log(data);
 
       const cityName = data[0].name;
       const state = data[0].state;
@@ -94,7 +151,8 @@ function getWeather(lat, lon){
       return response.json();
   })
   .then(function(data){
-       console.log(data);
+      // console.log(data);
+
       const temp = data.main.temp;
       const wind = data.wind.speed;
       const humid = data.main.humidity;
@@ -131,7 +189,7 @@ function getForecast(lat, lon){
       return response.json();
   })
   .then(function(data){
-      console.log(data);
+      // console.log(data);
 
       const dates = [];
       const temps = [];
