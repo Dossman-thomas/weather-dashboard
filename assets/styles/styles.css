@@ -12,8 +12,14 @@ header {
   padding: 2rem;
 }
 
+h3 {
+  border-bottom: 2px solid white;
+  margin-bottom: 10px;
+}
+
 li {
   margin-bottom: 1rem;
+  font-size: 1.2rem;
 }
 
 input {
@@ -33,7 +39,7 @@ img {
 
 .forecast {
   width: 7rem;
-  height: 150px;
+  height: 140px;
   line-height: 1.5rem;
   background-color: rgb(113, 113, 227);
   color: white;
@@ -80,6 +86,6 @@ img {
 }
 
 #cur-icon{
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
 }

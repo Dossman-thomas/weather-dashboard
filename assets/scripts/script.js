@@ -4,6 +4,8 @@
 // I WANT to see the weather outlook for multiple cities
 // SO THAT I can plan a trip accordingly
 
+//-------------------------------------------------
+
 // UNIVERSAL VARIABLES
 
 const apiKey = 'b3ba09bbd6c07cf37bc20efef97e170e';
@@ -150,24 +152,12 @@ function getForecast(lat, lon){
         // Create an <img> element for the weather icon and set its src attribute
         const iconImg = $('<img>').attr('src', iconUrl);
 
-        // create/target elements
-        const dateEl = $('h3');
-        const dateBox = $('.forecast');
+        // Create a heading tag for the dates
+        const dateEl = $('<h3>').text(dates[i]);
 
-        // attr/text
-
-        // dateEl.text(dates);
-
-        // append
-
-
-        // Append the weather icon to the day element
-        days[i].text(dates[i] + "\r\n");
-
-        // dateEl.text(headings);
-
-        // dateBox.append(dateEl);
-
+        // Append content to page
+        days[i].append(dateEl);
+      
         days[i].append("Temp: " + temps[i] + " F" + "\r\n" + "WS: " + winds[i] + " mph" + "\r\n" + "Humidity: " + humidities[i] + "%");
 
         days[i].append(iconImg);
