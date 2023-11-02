@@ -88,7 +88,7 @@ function getWeather(lat, lon){
       const curIcon = $('<img>');
 
       // attr/text
-      curIcon.attr('src', `http://openweathermap.org/img/w/${icon}.png`);
+      curIcon.attr('src', `http://openweathermap.org/img/wn/${icon}.png`);
       curIcon.attr('id', 'cur-icon');
       curTemp.text('Temp: ' + temp + "F");
       curWind.text('Windspeed: ' + wind + "mph");
@@ -122,7 +122,7 @@ function getForecast(lat, lon){
       
 
       // Loop through the data and extract the required values
-      for (let i = 3; i <= 35; i += 8) {
+      for (let i = 6; i <= 38; i += 8) {
         
         dates.push(data.list[i].dt_txt.substring(0, 10));
         temps.push(data.list[i].main.temp);
@@ -140,18 +140,33 @@ function getForecast(lat, lon){
         $('#day-5')
       ];
 
-      // Use a loop to set the values for each day
+      // Use a loop to display the values for each day
       for (let i = 0; i < days.length; i++) {
 
         const iconCode = icons[i];
 
-        const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`; 
+        const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`; 
 
         // Create an <img> element for the weather icon and set its src attribute
         const iconImg = $('<img>').attr('src', iconUrl);
 
+        // create/target elements
+        const dateEl = $('h3');
+        const dateBox = $('.forecast');
+
+        // attr/text
+
+        // dateEl.text(dates);
+
+        // append
+
+
         // Append the weather icon to the day element
         days[i].text(dates[i] + "\r\n");
+
+        // dateEl.text(headings);
+
+        // dateBox.append(dateEl);
 
         days[i].append("Temp: " + temps[i] + " F" + "\r\n" + "WS: " + winds[i] + " mph" + "\r\n" + "Humidity: " + humidities[i] + "%");
 
