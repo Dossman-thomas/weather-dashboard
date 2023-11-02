@@ -20,6 +20,11 @@ input {
   padding: .5rem;
 }
 
+img {
+  height: 40px;
+  width: 40px;
+}
+
 /* CLASS SELECTORS */
 
 .heading {
@@ -27,8 +32,9 @@ input {
 }
 
 .forecast {
-  width: 5rem;
+  width: 7rem;
   height: 150px;
+  line-height: 1.5rem;
   background-color: rgb(113, 113, 227);
   color: white;
   padding: 1rem;
@@ -72,4 +78,9 @@ input {
   background-color: rgb(113, 113, 227);
   color: white;
   border: none;
+}
+
+#cur-icon{
+  height: 70px;
+  width: 70px;
 }

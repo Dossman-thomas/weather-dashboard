@@ -17,16 +17,21 @@ const curListEl = $("#cur-list");
 
 let cities = [];
 
+// SUBMIT BTN FUNCTION
+
+submitBtn.on("submit", function(){
+
+
+});
+
 getGEO();
 
-// SUBMIT BTN FUNCTION
-// submitBtn.on("submit", );
 
 // FETCH WEATHER LOCATION FUNCTION
 // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 function getGEO(city){
-  city = 'fort myers';
+  city = 'philadelphia';
   const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
 
   
@@ -57,6 +62,7 @@ function getGEO(city){
 
       curCityEl.append(curCity);
       getWeather(lat, lon);
+      getForecast(lat, lon);
   })
 }
 
@@ -71,25 +77,89 @@ function getWeather(lat, lon){
       return response.json();
   })
   .then(function(data){
-      console.log(data);
+       console.log(data);
       const temp = data.main.temp;
       const wind = data.wind.speed;
       const humid = data.main.humidity;
+      const icon = data.weather[0].icon;
 
       // create elements
       const curTemp = $('<li>');
       const curWind = $('<li>');
       const curHumid = $('<li>');
+      const curIcon = $('<img>');
 
       // attr/text
+      curIcon.attr('src', `http://openweathermap.org/img/w/${icon}.png`);
+      curIcon.attr('id', 'cur-icon');
       curTemp.text('Temp: ' + temp + "F");
       curWind.text('Windspeed: ' + wind + "mph");
       curHumid.text('Humidity: ' + humid + "%");
 
       // append
+      curListEl.append(curIcon);
       curListEl.append(curTemp);
       curListEl.append(curWind);
       curListEl.append(curHumid);
   })
+}
 
+// FETCH 5 DAY FORECAST
+// api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}
+function getForecast(lat, lon){
+  const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+
+  fetch(forecastURL)
+  .then(function(response){
+      return response.json();
+  })
+  .then(function(data){
+      console.log(data);
+
+      const dates = [];
+      const temps = [];
+      const winds = [];
+      const humidities = [];
+      const icons = [];
+      
+
+      // Loop through the data and extract the required values
+      for (let i = 3; i <= 35; i += 8) {
+
+        dates.push(data.list[i].dt_txt.substring(0, 10));
+        temps.push(data.list[i].main.temp);
+        winds.push(data.list[i].wind.speed);
+        humidities.push(data.list[i].main.humidity);
+        icons.push (data.list[i].weather[0].icon);
+      }
+
+      // Initialize an array of day elements
+      const days = [
+        $('#day-1'),
+        $('#day-2'),
+        $('#day-3'),
+        $('#day-4'),
+        $('#day-5')
+      ];
+
+      // Use a loop to set the values for each day
+      for (let i = 0; i < days.length; i++) {
+
+        // Adjust this according to your API response
+        const iconCode = icons[i];
+        // Construct the URL for the weather icon using a base URL and the icon code
+        const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`; 
+
+        // Create an <img> element for the weather icon and set its src attribute
+        const iconImg = $('<img>').attr('src', iconUrl);
+
+        // Append the weather icon to the day element
+        days[i].text(dates[i] + "\r\n"); 
+
+        days[i].append("\r\n" + "Temp: " + temps[i] + " F" + "\r\n" + "WS: " + winds[i] + " mph" + "\r\n" + "Humidity: " + humidities[i] + "%");
+
+        days[i].append(iconImg);
+      
+      }
+  })
 }
