@@ -11,6 +11,8 @@
 const apiKey = 'b3ba09bbd6c07cf37bc20efef97e170e';
 
 const submitBtn = $("#submit-btn");
+const clearBtn = $("#clear-btn");
+
 const userInput = $("#city-input")
 const curCityEl = $("#city-name");
 const curListEl = $("#cur-list");
@@ -18,25 +20,55 @@ const forecastEl = $(".forecast");
 const forecastInfo = $("#forecast-info");
 const citiesStorageEl = $("#ls-cities");
 
+
 let city;
 let cities = [];
+
+function clearLocal(){
+
+  localStorage.clear();
+  cities = [];
+  loadBtns();
+}
+
+clearBtn.on("click", clearLocal);
 
 // Retrieve data from local storage
 cities = JSON.parse(localStorage.getItem("cities")) || [];
 
 // console.log(cities);
+function loadBtns (){
 
 // Check if there is data in local storage
 if (cities && cities.length > 0) {
   // Do something with the data, for example, display it in a list
+
+  citiesStorageEl.empty();
+
   for (const city of cities) {
     // Create and append buttons, or process the data as needed
     const citiesBtns = $('<button>').addClass("saved-cities").text(city);
 
     citiesStorageEl.append(citiesBtns);
+
+    // Add a click event listener to each button
+  citiesBtns.on("click", function () {
+    const cityName = $(this).text(); // Get the city name from the button's text
+
+    // console.log(cityName);
+    // Fetch and display the weather info for the clicked city
+    curCityEl.empty();
+    curListEl.empty();
+    forecastEl.empty();
+    forecastInfo.show();
+    getGEO(cityName);
+
+    });
   }
 }
+}
 
+loadBtns();
 
 // hide 5-day forecast grid on load
 forecastInfo.hide();
@@ -51,12 +83,10 @@ function handleSubmit(event){
 
   event.preventDefault();
 
-
   // empties weather content w/ new user input
   curCityEl.empty();
   curListEl.empty();
   forecastEl.empty();
-  
 
   // sets new user input to variable 'city' to be used in fetch functions
   city = userInput.val().trim();
@@ -83,32 +113,32 @@ function handleSubmit(event){
   } else {
 
     forecastInfo.show();
-    // removes class that is hiding the 5-day forecast content
 
     getGEO(city);
 
     // add user input to cities array
     cities.push(city);
 
+    // saving past user inputs in local storage
+    localStorage.setItem("cities", JSON.stringify(cities));
+
     console.log(cities); // testing cities array
 
 
     // create
+    
     citiesBtns = $('<button>').addClass("saved-cities");
 
     // attr/text
     citiesBtns.text(city);
     
     // append
-
+    
     citiesStorageEl.append(citiesBtns);
 
-
-    // saving past user inputs in local storage
-    localStorage.setItem("cities", JSON.stringify(cities));
-
     userInput.val('');
-
+    // cities = [];
+    loadBtns();
   }
 }
 
@@ -151,6 +181,7 @@ function getGEO(city){
       // append
 
       curCityEl.append(curCity);
+
       getWeather(lat, lon);
       getForecast(lat, lon);
   })

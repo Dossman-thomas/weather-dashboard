@@ -45,13 +45,13 @@ button {
 }
 
 #submit-btn,
+#clear-btn,
 .saved-cities {
   padding: .5rem;
   font-weight: 600;
   background-color: rgb(113, 113, 227);
   color: white;
   border: none;
-  
 }
 
 /* CLASS SELECTORS */
@@ -76,6 +76,9 @@ button {
 
 
 /* ID SELECTORS */
+#clear-btn {
+  background-color: grey;
+}
 
 #form-box {
   display: flex;
