@@ -5,9 +5,7 @@
 // SO THAT I can plan a trip accordingly
 
 // UNIVERSAL VARIABLES
-const geoAPI = 'http://api.openweathermap.org/geo/1.0/direct?q=';
-const geoAPI2 = '&limit=1&appid=';
-const forecastAPI = 'https://api.openweathermap.org/data/2.5/forecast?'
+
 const apiKey = 'b3ba09bbd6c07cf37bc20efef97e170e';
 
 const submitBtn = $("#submit-btn");
@@ -125,7 +123,7 @@ function getForecast(lat, lon){
 
       // Loop through the data and extract the required values
       for (let i = 3; i <= 35; i += 8) {
-
+        
         dates.push(data.list[i].dt_txt.substring(0, 10));
         temps.push(data.list[i].main.temp);
         winds.push(data.list[i].wind.speed);
@@ -145,18 +143,17 @@ function getForecast(lat, lon){
       // Use a loop to set the values for each day
       for (let i = 0; i < days.length; i++) {
 
-        // Adjust this according to your API response
         const iconCode = icons[i];
-        // Construct the URL for the weather icon using a base URL and the icon code
+
         const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`; 
 
         // Create an <img> element for the weather icon and set its src attribute
         const iconImg = $('<img>').attr('src', iconUrl);
 
         // Append the weather icon to the day element
-        days[i].text(dates[i] + "\r\n"); 
+        days[i].text(dates[i] + "\r\n");
 
-        days[i].append("\r\n" + "Temp: " + temps[i] + " F" + "\r\n" + "WS: " + winds[i] + " mph" + "\r\n" + "Humidity: " + humidities[i] + "%");
+        days[i].append("Temp: " + temps[i] + " F" + "\r\n" + "WS: " + winds[i] + " mph" + "\r\n" + "Humidity: " + humidities[i] + "%");
 
         days[i].append(iconImg);
       
