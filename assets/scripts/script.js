@@ -14,24 +14,41 @@ const submitBtn = $("#submit-btn");
 const userInput = $("#city-input")
 const curCityEl = $("#city-name");
 const curListEl = $("#cur-list");
+const forecastEl = $(".forecast");
 
+let city;
 let cities = [];
 
 // SUBMIT BTN FUNCTION
 
-submitBtn.on("submit", function(){
+function handleSubmit(event){
 
+  event.preventDefault();
 
-});
+  // empties weather content w/ new user input
+  curCityEl.empty();
+  curListEl.empty();
+  forecastEl.empty();
 
-getGEO();
+  // removes class that is hiding the 5-day forecast content
+  $("#forecast-info").removeAttr("class");
+
+  // sets new user input to variable 'city' to be used in fetch functions
+  city = userInput.val();
+
+  getGEO(city);
+}
+
+// EVENT LISTENER
+
+submitBtn.on("click", handleSubmit);
 
 
 // FETCH WEATHER LOCATION FUNCTION
 // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 function getGEO(city){
-  city = 'philadelphia';
+  // city = 'philadelphia';
   const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
 
   

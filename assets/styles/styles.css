@@ -46,6 +46,10 @@ img {
   padding: 1rem;
 }
 
+.f-info {
+  display: none;
+}
+
 /* ID SELECTORS */
 
 #form-box {
