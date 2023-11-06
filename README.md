@@ -21,9 +21,9 @@ Finally, users can click the clear button to empty local storage and start new.
 
 ## Screenshots
 
-![Weather-dash-SS1](./Assets/images/weather-ss1.png)
+![Weather-dash-SS1](./assets/images/weather-ss1.png)
 
-![Weather-dash-SS2](./Assets/images/weather-ss2.png)
+![Weather-dash-SS2](./assets/images/weather-ss2.png)
 
 ## Badges
 

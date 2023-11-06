@@ -152,7 +152,7 @@ submitBtn.on("click", handleSubmit);
 
 function getGEO(city){
   // city = 'philadelphia';
-  const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  const geoURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
 
   
   fetch(geoURL)
@@ -212,7 +212,7 @@ function getWeather(lat, lon){
       const curIcon = $('<img>');
 
       // attr/text
-      curIcon.attr('src', `http://openweathermap.org/img/wn/${icon}.png`);
+      curIcon.attr('src', `https://openweathermap.org/img/wn/${icon}.png`);
       curIcon.attr('id', 'cur-icon');
       curTemp.text('Temp: ' + temp + "F");
       curWind.text('Windspeed: ' + wind + "mph");
@@ -269,7 +269,7 @@ function getForecast(lat, lon){
 
         const iconCode = icons[i];
 
-        const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`; 
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`; 
 
         // Create an <img> element for the weather icon and set its src attribute
         const iconImg = $('<img>').attr('src', iconUrl);
